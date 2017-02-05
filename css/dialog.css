@@ -1,0 +1,83 @@
+.g-dialog-contianer{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	left: 0;
+	top:0;
+	background-color: rgba(0,0,0,0.6);
+	/*display: -webkit-box;
+	-webkit-box-pack:center;
+	-webkit-box-align:center;*/
+
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.g-dialog-contianer .dialog-window{
+	padding: 1em;
+	border-radius: 10px;
+	background-color: rgba(0,0,0,0.8);
+	-webkit-transition: all .3s cubic-bezier(0.61,-0.07, 0.3, 1.46);
+	-moz-transition: all .3s cubic-bezier(0.61,-0.07, 0.3, 1.46);
+	-ms-transition: all .3s cubic-bezier(0.61,-0.07, 0.3, 1.46);
+	-o-transition: all .3s cubic-bezier(0.61,-0.07, 0.3, 1.46);
+	transition: all .3s cubic-bezier(0.61,-0.07, 0.3, 1.46);
+	
+}
+
+.g-dialog-contianer .dialog-window .dialog-header{
+	width: 50px;
+	height: 50px;
+	margin: 0 auto;	
+	background: url("../timg.jpg") no-repeat 0 0;
+	-webkit-background-size: 50px;
+	background-size: 50px;
+}
+.g-dialog-contianer .dialog-window .dialog-header.ok{
+	background-position: 0 0;
+}
+.g-dialog-contianer .dialog-window .dialog-header.warning{
+	background-position: 0 bottom;
+}
+.g-dialog-contianer .dialog-window .dialog-header.waiting{
+	background: url("../loading.gif") no-repeat 0 0;
+	-webkit-background-size: 50px;
+	background-size: 50px;
+}
+
+.g-dialog-contianer .dialog-window .dialog-content{
+	padding: 1em 1em 0;
+	color: #fff;
+	line-height: 1.8;
+	text-align: center;
+}
+
+.g-dialog-contianer .dialog-window .dialog-footer{
+	padding: 1em 1em 0;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.g-dialog-contianer .dialog-window button{
+	-webkit-appearance: normal;
+	-moz-appearance: normal;
+	-ms-appearance: normal;
+	appearance: normal;
+	background-color: rgba(255,255,255,0.8);
+	padding: 0.8em 1.8em;
+	color: #eee;
+	border:none;
+	border-radius: 5px;
+	margin: 0 .3em;
+	text-shadow: #666 1px 1px 0;
+}
+
+.g-dialog-contianer .dialog-window button.green{
+	background-color: rgba(2,202,200,0.8);
+}
+
+.g-dialog-contianer .dialog-window button.red{
+	background-color: rgba(251,23,50,0.8);
+}
