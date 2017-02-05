@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<!--删除苹果默认的工具栏和菜单栏-->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<!--设置苹果工具栏颜色-->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!--忽略页面中的数字识别为电话-->
+	<meta name="format-detection" content="telephone=no,email=no">
+	<title>Dialog</title>
+	<link rel="stylesheet" type="text/css" href="css/dialog3.css">
+	<style type="text/css">
+		*{padding:0;margin:0}
+		body{font-size:12px;padding:20px}
+		button{display:block;width:100%;padding:10px;margin:20px 0;background-color:green;border-radius:10px;border:1px solid #eee}
+	</style>
+</head>
+<body>
+	<button id="btn1">没有任何参数传递(需要手动关闭)</button>
+	<button id="btn2">弹出一个不带任何按钮，且是警告的框，并且两秒后自动关闭</button>
+	<button id="btn3">弹出一个有确认的取消的按钮的成功框，点击按钮直接关闭</button>
+	<button id="btn4">弹出一个有确认的警告框，点击按钮不可以关闭(需要手动关闭)</button>
+	<button id="btn5">弹出一个多组合的按钮框，且按钮样式可以定制</button>
+	<button id="btn6">弹出一个确认和删除的框，点击确认弹出加载框2秒自动关闭，点击删除按钮把上一次框关闭</button>
+	<button id="btn7">弹出一个动画框</button>
+	<button id="btn8">延迟关闭回调</button>
+	<button id="btn9">点击遮罩层关闭</button>
+	<script type="text/javascript" src="zeptojs.js"></script>
+	<script type="text/javascript" src="dialog.js"></script>
+	<script type="text/javascript">
+		// $.dialog({type:"waiting"});
+		$("#btn1").tap(function(){
+			var d=$.dialog();
+		});
+		$("#btn2").tap(function(){
+			var d=$.dialog({
+				type:"ok",
+				delay:2000,
+				message:"2s后关闭"
+			});
+		});
+		$("#btn3").tap(function(){
+			var d=$.dialog({
+				type:"ok",
+				message:"手动关闭",
+				buttons:[{
+					type:"red",
+					text:"确认",
+				},{
+					text:"取消",
+				}]
+			});
+		});
+		$("#btn4").tap(function(){
+			var d=$.dialog({
+				type:"warning",
+				message:"点击不关闭",
+				buttons:[{
+					type:"red",
+					text:"确认",
+					callback:function(){
+						return false;
+					}
+				}]
+			});
+		});
+		$("#btn5").tap(function(){
+			var d=$.dialog({
+				type:"ok",
+				message:"多组合框",
+				buttons:[{
+					type:"green",
+					text:"确认",
+					callback:function(){
+						return false;
+					}
+				},{
+					type:"red",
+					text:"取消",
+					callback:function(){
+						return false;
+					}
+				},{
+					text:"测试",
+					callback:function(){
+						return false;
+					}
+				}]
+			});
+		});
+		$("#btn6").tap(function(){
+			var d=$.dialog({
+				type:"ok",
+				message:"手动关闭",
+				buttons:[{
+					type:"red",
+					text:"确认",
+					callback:function(){
+						$.dialog({
+							type:"waiting",
+							message:"2s后关闭",
+							delay:2000
+						});
+					}
+				},{
+					text:"删除",
+					callback:function(){
+						d.close();
+						return false;
+					}
+				}]
+			});
+		});
+		$("#btn7").tap(function(){
+			var d=$.dialog({
+				type:"ok",
+				effect:true
+			});
+		});
+		$("#btn8").tap(function(){
+			var d=$.dialog({
+				type:"ok",
+				delay:2000,
+				message:"延迟关闭回调",
+				delayCallback:function(){
+					alert("1111");
+				}
+			});
+		});
+		$("#btn9").tap(function(){
+			var d=$.dialog({
+				type:"warning",
+				message:"点击遮罩层关闭",
+				buttons:[{
+					type:"green",
+					text:"确认",
+					callback:function(){
+					}
+				},{
+					type:"red",
+					text:"取消",
+					callback:function(){
+						return false;
+					}
+				}],
+				maskClose:true
+			});
+		});
+		
+	</script>
+</body>
+</html>
